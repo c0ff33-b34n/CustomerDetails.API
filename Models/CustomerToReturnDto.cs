@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace CustomerDetailsApi.Models
 {
     public class CustomerToReturnDto

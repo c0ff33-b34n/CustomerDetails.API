@@ -2,8 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace CustomerDetailsApi.Models
 {
-    public class CustomerNameToReturn
-    Dto
+    public class CustomerNameToReturnDto
     {
         [JsonPropertyNameAttribute("id")]
         public int Id { get; set; }

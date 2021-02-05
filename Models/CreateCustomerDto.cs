@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace CustomerDetailsApi.Models
 {
     public class CreateCustomerDto
