@@ -1,6 +1,6 @@
 namespace CustomerDetailsApi.Models
 {
-    public class CreateOrEditCustomerDto
+    public class CreateCustomerDto
     {
         [Required, StringLength(50)]
         public string FirstName { get; set; }
