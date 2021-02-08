@@ -61,6 +61,20 @@ namespace CustomerDetailsApi.Controllers
             }
         }
 
+        [HttpPost("delete/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult Delete(int id)
+        {
+            var customer = _repo.FindById(id);
+            if (customer != null)
+            {
+                _repo.DeleteById(id);
+                return Ok();
+            }
+
+            return NotFound();
+        }
         
     }
 }
