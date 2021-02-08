@@ -32,7 +32,7 @@ namespace CustomerDetailsApi.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerToReturnDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             var customer = _repo.FindById(id);
 
@@ -42,6 +42,23 @@ namespace CustomerDetailsApi.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Add(CreateCustomerDto customerDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var customer = _mapper.Map<Customer>(customerDto);
+                _repo.Insert(customer);
+                return CreatedAtAction(nameof(GetById), new { id = customer.Id }, customer);
+            }
+            else
+            {
+                return BadRequest("Customer data is not valid");
+            }
         }
 
         

@@ -9,6 +9,8 @@ namespace CustomerDetailsApi.Mappers
         {
             CreateMap<Customer, CustomerNameToReturnDto>();
             CreateMap<Customer, CustomerToReturnDto>();
+            CreateMap<CreateCustomerDto, Customer>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }
