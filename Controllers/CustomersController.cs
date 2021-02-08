@@ -45,7 +45,7 @@ namespace CustomerDetailsApi.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CustomerToReturnDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Add(CreateCustomerDto customerDto)
         {
