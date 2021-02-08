@@ -61,6 +61,27 @@ namespace CustomerDetailsApi.Controllers
             }
         }
 
+        [HttpPost("edit/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult Edit(int id, EditCustomerDto editCustomerDto)
+        {
+            var customer = _repo.FindById(id);
+            if (customer == null) return NotFound();
+            
+            if (ModelState.IsValid)
+            {
+                var cust = _mapper.Map<Customer>(editCustomerDto);
+                _repo.Update(cust);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Customer data is not valid");
+            }
+            
+        }
+
         [HttpPost("delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

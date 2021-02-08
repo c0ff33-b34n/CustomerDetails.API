@@ -11,6 +11,7 @@ namespace CustomerDetailsApi.Mappers
             CreateMap<Customer, CustomerToReturnDto>();
             CreateMap<CreateCustomerDto, Customer>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<EditCustomerDto, Customer>();
         }
     }
 }

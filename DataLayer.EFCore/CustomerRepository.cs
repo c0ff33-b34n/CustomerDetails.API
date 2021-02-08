@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CustomerDetailsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,7 +40,8 @@ namespace CustomerDetails.DataLayer.EFCore
 
         public void Update(Customer customer)
         {
-            _dbContext.Entry(customer).State = EntityState.Modified;
+            var cust = _dbContext.Customers.First(c => c.Id == customer.Id);
+            _dbContext.Entry(cust).CurrentValues.SetValues(customer);
             _dbContext.SaveChanges();
         }
     }
