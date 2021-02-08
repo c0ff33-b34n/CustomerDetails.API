@@ -1,4 +1,4 @@
-using CustomerDetails.Models;
+using CustomerDetailsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerDetails.DataLayer.EFCore

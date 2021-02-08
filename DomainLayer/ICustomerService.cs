@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using CustomerDetails.Models;
+using CustomerDetailsApi.Models;
 
 namespace CustomerDetails.DomainLayer
 {

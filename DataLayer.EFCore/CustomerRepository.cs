@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using CustomerDetails.Models;
+using CustomerDetailsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CustomerDetails.DataLayer.EFCore

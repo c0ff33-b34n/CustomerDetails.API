@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CustomerDetails.DataLayer;
-using CustomerDetails.Models;
+using CustomerDetailsApi.Models;
 
 namespace CustomerDetails.DomainLayer.Services
 {

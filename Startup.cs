@@ -2,8 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CustomerDetails.DataLayer;
 using CustomerDetails.DataLayer.EFCore;
+using CustomerDetails.DomainLayer;
+using CustomerDetails.DomainLayer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +34,9 @@ namespace CustomerDetailsApi
         {
             services.AddDbContext<CustomerContext>(x => x.UseSqlite(Configuration
                 .GetConnectionString("DefaultConnection")));
+            services.AddAutoMapper(
+                typeof(Mappers.CustomerProfile).Assembly
+            );
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -40,7 +46,7 @@ namespace CustomerDetailsApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMapper mapper)
         {
             if (env.IsDevelopment())
             {
@@ -53,12 +59,14 @@ namespace CustomerDetailsApi
 
             app.UseRouting();
 
-            app.UseAuthorization();
+//            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            mapper.ConfigurationProvider.AssertConfigurationIsValid();
         }
     }
 }
