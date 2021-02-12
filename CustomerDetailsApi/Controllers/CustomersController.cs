@@ -21,13 +21,14 @@ namespace CustomerDetailsApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CustomerNameToReturnDto>> Get()
+        public ActionResult<List<CustomerNameToReturnDto>> Get()
         {
             var customers = _repo.All()
-                .Select(c => _mapper.Map<CustomerNameToReturnDto>(c));
+                .Select(c => _mapper.Map<CustomerNameToReturnDto>(c)).ToList();
 
-            return Ok(customers);
-        }
+            return customers;
+
+        }            
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerToReturnDto))]
